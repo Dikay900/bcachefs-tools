@@ -742,7 +742,7 @@ retry:
 	 * superblocks:
 	 */
 	bio_reset(sb->bio, sb->bdev, REQ_OP_READ|REQ_SYNC|REQ_META);
-	sb->bio->bi_iter.bi_sector = BCH_SB_LAYOUT_SECTOR;
+	sb->bio->bi_iter.bi_sector = sb->bdev->bd_nr_sectors - 1;
 	/*
 	 * use sb buffer to read layout, since sb buffer is page aligned but
 	 * layout won't be:
